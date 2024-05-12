@@ -42,7 +42,7 @@ while count < len(list_of_objects):
     else:
         list_of_objects[count]['Last 4:'] = int(list_of_objects[count]['Last 4:'])
         while len(str(list_of_objects[count]['Last 4:'])) != 4:
-            formatted_ssn = str(list_of_objects[count]['Last 4:']).zfill(4)
+            formatted_ssn = str(list_of_objects[count]['Last 4:']).zfill(4)  # adds leading 0's
             list_of_objects[count]['Last 4:'] = formatted_ssn
 
     create_pdf(list_of_objects[count], selected_pdf)
