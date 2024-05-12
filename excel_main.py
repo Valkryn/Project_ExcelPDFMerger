@@ -3,6 +3,7 @@ from math import isnan
 from pdf_main import create_pdf
 from tkinter import Tk, messagebox  # from tkinter import Tk for Python 3.x
 from tkinter.filedialog import askopenfilename
+from work_data import *
 
 Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
 
@@ -14,31 +15,22 @@ def select_file(prompt_message, file_name, file_type):
     return file
 
 
-# show an "Open" dialog box and return the path to the selected file
-messagebox.showinfo(title='Excel To PDF', message='Please select an excel file to merge')
-user_selected_file = select_file('Select Excel file', 'Excel File', '*.xlsx')
-
-messagebox.showinfo(title='Excel To PDF', message='Please select the PDF form.')
-selected_pdf = select_file('Select PDF form', 'PDF form', '*.pdf')
-if selected_pdf == '':
-    quit()
-
-
 def add_leading_zeroes(value):
     while len(value) != 4:
         value = '0' + value
     return value
 
 
-work_forch_address = '1300 Morris Park Avenue'
-work_ken_address = '1410 Pelham Parkway South'
-work_price_address = '1301 Morris Park Avenue'
-work_van_address = '1225 Morris Park Avenue'
-work_dict = {'Work_City': 'Bronx',
-             'Work_State': 'NY',
-             'Work_Zipcode': '10461'}
+# show an "Open" dialog box and return the path to the selected file
+messagebox.showinfo(title='Excel To PDF', message='Please select an excel file to merge')
+user_selected_file = select_file('Select Excel file', 'Excel File', '*.xlsx')
 
 excel_file = pd.read_excel(user_selected_file)
+
+messagebox.showinfo(title='Excel To PDF', message='Please select the PDF form.')
+selected_pdf = select_file('Select PDF form', 'PDF form', '*.pdf')
+if selected_pdf == '':
+    quit()
 
 columns_to_select = ['First Name:', 'Last Name:', 'Last 4:', 'Ext/Tel:', 'E-mail Address:', 'Years:', 'Building:',
                      'Employee Number', 'Address', 'City', 'State', 'ZipCode']
