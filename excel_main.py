@@ -5,14 +5,21 @@ from tkinter import Tk, messagebox  # from tkinter import Tk for Python 3.x
 from tkinter.filedialog import askopenfilename
 
 Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
-messagebox.showinfo(title='Excel To PDF', message='Please select an excel file to merge')
 
-user_selected_file = askopenfilename()  # show an "Open" dialog box and return the path to the selected file
-if user_selected_file == '':
-    quit()
+
+def select_file(prompt_message, file_name, file_type):
+    file = askopenfilename(title=prompt_message, filetypes=[(file_name, file_type)])
+    if file == '':
+        quit()
+    return file
+
+
+# show an "Open" dialog box and return the path to the selected file
+messagebox.showinfo(title='Excel To PDF', message='Please select an excel file to merge')
+user_selected_file = select_file('Select Excel file', 'Excel File', '*.xlsx')
 
 messagebox.showinfo(title='Excel To PDF', message='Please select the PDF form.')
-selected_pdf = askopenfilename()
+selected_pdf = select_file('Select PDF form', 'PDF form', '*.pdf')
 if selected_pdf == '':
     quit()
 

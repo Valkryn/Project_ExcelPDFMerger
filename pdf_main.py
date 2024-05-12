@@ -25,12 +25,12 @@ def create_pdf(Applicant, pdf_path):
             'City': Applicant['Work_City'],
             'State': Applicant['Work_State'],
             'Zipcode': Applicant['Work_Zipcode'],
-            'I': f'{Applicant['First Name:']} {Applicant['Last Name:']}'  # Section 3 Declaration
+            'I': f'{Applicant["First Name:"]} {Applicant["Last Name:"]}'  # Section 3 Declaration
         }, auto_regenerate=True
     )
     while not os.path.isdir('./Merged_files/'):
         os.mkdir('./Merged_files/')
     with open(
-            f'Merged_files/{Applicant['First Name:']}_{Applicant['Last Name:']}_{Applicant['Employee Number']}.pdf',
+            f'Merged_files/{Applicant["First Name:"]}_{Applicant["Last Name:"]}_{Applicant["Employee Number"]}.pdf',
             'wb') as output_stream:
         writer.write(output_stream)
